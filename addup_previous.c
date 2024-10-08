@@ -40,6 +40,19 @@ node* dequeue(q* queue){
     return ret;
 }
 
+node* copy(node* n){
+    node* t = newn;
+    t->val = n->val;
+    return t;
+}
+node* deep_copy(node* root){
+    if(!root) return NULL;
+    node* curr = copy(root);
+    curr->l = deep_copy(root->l); 
+    curr->r = deep_copy(root->r); 
+    return curr;
+}
+
 int addup(node* root){
     if(!root) return 0;
     int sum = root->val;
@@ -74,8 +87,10 @@ int main(void){
             i++;
         }
     } // input
+    node* root2 = deep_copy(root);
     addup(root);
-    printf("%d",root->val);
+    printf("copied tree : %d\n",root2->val);
+    printf("summed up tree: %d\n",root->val);
     
     
 }
