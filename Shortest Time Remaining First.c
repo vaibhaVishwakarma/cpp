@@ -1,3 +1,4 @@
+//https://www.javatpoint.com/os-srtf-scheduling-algorithm
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
@@ -5,6 +6,7 @@
 #define print(n) printf("%d ",(n))
 #define MAX 100000
 #define NIL NULL
+
 typedef struct {
     int id , at , bt , wt, tat , ct,rbt , done , present;
 }process;
