@@ -23,7 +23,11 @@ int isFull(queue*q){ return q->r == MAX-1;}
 void sortq(queue*q){
     for(int i = q->f ; i<q->r ; i++){
         int mn = i;
-        for(int j = i+1 ; j<=q->r ; j++) if(q->arr[mn]->rbt > q->arr[j]->rbt) mn = j;
+        for(int j = i+1 ; j<=q->r ; j++) 
+        if(q->arr[mn]->rbt > q->arr[j]->rbt)
+        mn = j;
+        else if(q->arr[mn]->rbt == q->arr[j]->rbt)
+                if(q->arr[mn]->at > q->arr[j]->at) mn = j;
         swap(&q->arr[mn] , &q->arr[i]);
     }
 }
