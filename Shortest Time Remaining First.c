@@ -24,7 +24,11 @@ int isFull(queue*q){ return q->r == MAX-1;}
 void sortq(queue*q){
     for(int i = q->f ; i<q->r ; i++){
         int mn = i;
-        for(int j = i+1 ; j<=q->r ; j++) if(q->arr[mn]->rbt > q->arr[j]->rbt) mn = j;
+        for(int j = i+1 ; j<=q->r ; j++) 
+        if(q->arr[mn]->rbt > q->arr[j]->rbt)
+        mn = j;
+        else if(q->arr[mn]->rbt == q->arr[j]->rbt)
+                if(q->arr[mn]->at > q->arr[j]->at) mn = j;
         swap(&q->arr[mn] , &q->arr[i]);
     }
 }
@@ -48,7 +52,7 @@ qnode pop(queue*q){
 }
 
 
-int n = 6;
+int n = 5;
 
 void printq(queue* q){
     for(int i = q->f ; i<=q->r ; i++) printf("%d ",q->arr[i]->id+1);
@@ -79,7 +83,7 @@ int main(){
     
     while(!isEmpty(q)){
         sortq(q);
-        // printq(q);
+        printq(q);
         qnode it = pop(q);
         it->present = 0;
        
@@ -87,6 +91,7 @@ int main(){
         if(t<=tq) {it->rbt = 0; at  += t;  it->ct = at; it->tat = it->ct - it->at ; it->wt =it->tat - it->bt ;}
         else{it->rbt -= tq; at+= tq; }
         printf("|P%d ",(it->id +1),at);
+        
         for(int i = 0 ; i<n ; i++)if( p[i]->present==0 && p[i]->rbt>0 && p[i]->at <= at) { push(q,p[i]); p[i]->present = 1;}
     }
     printf("\n");
@@ -95,7 +100,6 @@ int main(){
     }
     
 }
-
 
 
 
